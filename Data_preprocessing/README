@@ -1,0 +1,7 @@
+Here are some trivial Java/MATLAB programs for preprocessing of the movie data
+Combine.java -> Combine movie data with the calculated average rating score
+Getall.java -> Read all rating record from training_set (a folder of the dataset), divide then into 10 sets by the User ID
+movie_clustered.java -> Generate the dataset for the recommender using the movie clustering result
+op.m -> MATLAB file for sorting all the rating results by the User ID
+Sepbyyear.java -> Separate the sorted rating data by period: Before 1991, 1991-2000, After 2000
+Solution.java -> Get the average score for each movie
