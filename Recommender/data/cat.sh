@@ -1,12 +1,10 @@
 #!/bin/bash
 catf(){
-#cd /Users/samluo/Downloads/download/
-cat temp.dat $1 > recc.dat
+cat temp.dat $1 > data/recc.dat
 }
 
 clean(){
-	#cd /Users/samluo/Downloads/download/
-	rm -f temp.dat recc.dat
+	rm -f data/temp.dat data/recc.dat
 }
 while getopts b:c cho; do
     case $cho in
