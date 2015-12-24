@@ -26,7 +26,7 @@ public class App
 	private static Random rand = new Random();
 	public static void loadmoviedata(){
 		try {
-			BufferedReader bfreader = new BufferedReader(new InputStreamReader(new FileInputStream("/data/movie_titles.txt")));
+			BufferedReader bfreader = new BufferedReader(new InputStreamReader(new FileInputStream("data/movie_titles.txt")));
 			String s;
 			movielist[0] = new Hashtable<Integer,String>();
 			movielist[1] = new Hashtable<Integer,String>(); 
@@ -47,7 +47,7 @@ public class App
     		}
 			bfreader.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Mark "+e.getMessage());
 		}
 	}
 	
@@ -74,13 +74,13 @@ public class App
 	
 	public static void recmain() throws Exception {
 		Thread.sleep(100);
-		BufferedWriter bfwriter = new BufferedWriter(new FileWriter("/data/temp.dat"));
+		BufferedWriter bfwriter = new BufferedWriter(new FileWriter("data/temp.dat"));
 		for(String s:userinfo)
 			bfwriter.write(s+"\n");
 		bfwriter.close();
-		Runtime.getRuntime().exec("/data/cat.sh -b "+"/data/set"+set+".txt");
+		Runtime.getRuntime().exec("data/cat.sh -b "+"data/set"+set+".txt");
 		//final File moviedata = new File("/Users/samluo/Downloads/download/recc.dat");
-		DataModel model = new FileDataModel (new File("/data/recc.dat"));
+		DataModel model = new FileDataModel (new File("data/recc.dat"));
 		UserSimilarity similarity = new PearsonCorrelationSimilarity (model,Weighting.WEIGHTED);
 		UserNeighborhood neighborhood = new NearestNUserNeighborhood (100, similarity, model);
 		Recommender recommender = new GenericUserBasedRecommender (model, neighborhood, similarity);
@@ -89,6 +89,6 @@ public class App
 			String moviename = movielist[set].get((int)recommendation.getItemID());
 			System.out.println("Recommended movie: "+moviename);
 		}
-		Runtime.getRuntime().exec("/data/cat.sh -c");
+		Runtime.getRuntime().exec("data/cat.sh -c");
 	}
 }
